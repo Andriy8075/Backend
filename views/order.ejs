@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="container">
+    <nav class="nav">
+      <a href="/">Головна</a>
+      <a href="/orders">Усі замовлення</a>
+      <a href="/add-order">Додати</a>
+    </nav>
+
+    <section class="card details">
+      <p class="label">CRUD: Read</p>
+      <h1>Замовлення</h1>
+
+      <dl>
+        <dt>Прізвище співробітника</dt>
+        <dd><%= order.employeeLastName %></dd>
+
+        <dt>Сума замовлення</dt>
+        <dd><%= order.orderAmount %> грн</dd>
+
+        <dt>Найменування товару</dt>
+        <dd><%= order.productName %></dd>
+
+        <dt>Назва фірми-клієнта</dt>
+        <dd><%= order.clientCompanyName %></dd>
+
+        <dt>Прізвище замовника</dt>
+        <dd><%= order.customerLastName %></dd>
+      </dl>
+
+      <div class="actions">
+        <a class="button" href="/edit/<%= order._id %>">Редагувати</a>
+        <form action="/orders/<%= order._id %>?_method=DELETE" method="POST">
+          <button class="button danger" type="submit">Видалити</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

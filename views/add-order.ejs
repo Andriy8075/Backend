@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="container">
+    <nav class="nav">
+      <a href="/">Головна</a>
+      <a href="/orders">Усі замовлення</a>
+    </nav>
+
+    <section class="card">
+      <p class="label">CRUD: Create</p>
+      <h1>Додати замовлення</h1>
+
+      <form class="form" action="/add-order" method="POST">
+        <label>
+          Прізвище співробітника
+          <input type="text" name="employeeLastName" placeholder="Наприклад: Петренко" required>
+        </label>
+
+        <label>
+          Сума замовлення
+          <input type="number" name="orderAmount" min="0" step="0.01" placeholder="1500" required>
+        </label>
+
+        <label>
+          Найменування товару
+          <input type="text" name="productName" placeholder="Ноутбук" required>
+        </label>
+
+        <label>
+          Назва фірми-клієнта
+          <input type="text" name="clientCompanyName" placeholder="ТОВ Альфа" required>
+        </label>
+
+        <label>
+          Прізвище замовника
+          <input type="text" name="customerLastName" placeholder="Іваненко" required>
+        </label>
+
+        <button class="button" type="submit">Зберегти</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

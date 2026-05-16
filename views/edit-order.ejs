@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="container">
+    <nav class="nav">
+      <a href="/">Головна</a>
+      <a href="/orders">Усі замовлення</a>
+      <a href="/orders/<%= order._id %>">Перегляд</a>
+    </nav>
+
+    <section class="card">
+      <p class="label">CRUD: Update</p>
+      <h1>Редагувати замовлення</h1>
+
+      <form class="form" action="/edit/<%= order._id %>?_method=PUT" method="POST">
+        <label>
+          Прізвище співробітника
+          <input type="text" name="employeeLastName" value="<%= order.employeeLastName %>" required>
+        </label>
+
+        <label>
+          Сума замовлення
+          <input type="number" name="orderAmount" min="0" step="0.01" value="<%= order.orderAmount %>" required>
+        </label>
+
+        <label>
+          Найменування товару
+          <input type="text" name="productName" value="<%= order.productName %>" required>
+        </label>
+
+        <label>
+          Назва фірми-клієнта
+          <input type="text" name="clientCompanyName" value="<%= order.clientCompanyName %>" required>
+        </label>
+
+        <label>
+          Прізвище замовника
+          <input type="text" name="customerLastName" value="<%= order.customerLastName %>" required>
+        </label>
+
+        <button class="button" type="submit">Оновити</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

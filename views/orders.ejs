@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="container">
+    <nav class="nav">
+      <a href="/">Головна</a>
+      <a href="/add-order">Додати замовлення</a>
+      <a href="/api/orders">JSON</a>
+    </nav>
+
+    <section class="card">
+      <div class="page-header">
+        <div>
+          <p class="label">CRUD: Read</p>
+          <h1>Список замовлень</h1>
+        </div>
+        <a class="button" href="/add-order">Нове замовлення</a>
+      </div>
+
+      <% if (orders.length) { %>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Співробітник</th>
+                <th>Сума</th>
+                <th>Товар</th>
+                <th>Фірма-клієнт</th>
+                <th>Замовник</th>
+                <th>Дії</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% orders.forEach((order) => { %>
+                <tr>
+                  <td><%= order.employeeLastName %></td>
+                  <td><%= order.orderAmount %> грн</td>
+                  <td><%= order.productName %></td>
+                  <td><%= order.clientCompanyName %></td>
+                  <td><%= order.customerLastName %></td>
+                  <td class="row-actions">
+                    <a href="/orders/<%= order._id %>">Перегляд</a>
+                    <a href="/edit/<%= order._id %>">Редагувати</a>
+                    <form action="/orders/<%= order._id %>?_method=DELETE" method="POST">
+                      <button type="submit" class="link-button">Видалити</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } else { %>
+        <p class="empty">У базі поки немає замовлень.</p>
+      <% } %>
+    </section>
+  </main>
+</body>
+</html>
