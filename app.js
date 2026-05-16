@@ -4,6 +4,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const path = require('path');
+const { createHandler } = require('graphql-http/lib/use/express');
+const graphqlSchema = require('./graphql/schema');
+const graphqlResolvers = require('./graphql/resolvers');
 const orderRoutes = require('./routes/orderRoutes');
 
 const app = express();
@@ -23,6 +26,14 @@ mongoose
   .connect(db)
   .then(() => console.log('Connected to DB'))
   .catch((error) => console.log(error));
+
+app.all(
+  '/graphql',
+  createHandler({
+    schema: graphqlSchema,
+    rootValue: graphqlResolvers,
+  })
+);
 
 app.use(orderRoutes);
 

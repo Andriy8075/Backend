@@ -1,6 +1,6 @@
-# Lab 5 Orders CRUD
+# Lab 5-6 Orders CRUD
 
-Node.js application. The app uses Express, EJS, MongoDB, and Mongoose to manage company orders.
+Node.js application. The app uses Express, EJS, MongoDB, Mongoose, and GraphQL to manage company orders.
 
 ## Requirements
 
@@ -62,3 +62,104 @@ http://localhost:3000
 - `PUT /edit/:id` - update an order
 - `DELETE /orders/:id` - delete an order
 - `GET /api/orders` - return all orders as JSON
+- `POST /graphql` - GraphQL endpoint for Query and Mutation
+
+## GraphQL in Postman
+
+Use this URL:
+
+```text
+http://localhost:3000/graphql
+```
+
+In Postman, select `POST`, open the `Body` tab, choose `GraphQL`, and paste one of the operations below.
+
+### Query: Get All Orders
+
+```graphql
+query {
+  getAllOrders {
+    _id
+    employeeLastName
+    orderAmount
+    productName
+    clientCompanyName
+    customerLastName
+    createdAt
+    updatedAt
+  }
+}
+```
+
+### Query: Get One Order
+
+Replace the `_id` value with an existing document id.
+
+```graphql
+query {
+  getOrder(_id: "ORDER_ID") {
+    _id
+    employeeLastName
+    orderAmount
+    productName
+    clientCompanyName
+    customerLastName
+  }
+}
+```
+
+### Mutation: Create Order
+
+```graphql
+mutation {
+  createOrder(
+    employeeLastName: "Петренко"
+    orderAmount: 1500
+    productName: "Ноутбук"
+    clientCompanyName: "ТОВ Альфа"
+    customerLastName: "Іваненко"
+  ) {
+    _id
+    employeeLastName
+    orderAmount
+    productName
+    clientCompanyName
+    customerLastName
+  }
+}
+```
+
+### Mutation: Update Order
+
+Replace the `_id` value with an existing document id.
+
+```graphql
+mutation {
+  updateOrder(
+    _id: "ORDER_ID"
+    employeeLastName: "Сидоренко"
+    orderAmount: 2100
+    productName: "Монітор"
+    clientCompanyName: "ТОВ Бета"
+    customerLastName: "Коваленко"
+  ) {
+    _id
+    employeeLastName
+    orderAmount
+    productName
+    clientCompanyName
+    customerLastName
+    updatedAt
+  }
+}
+```
+
+### Mutation: Delete Order
+
+Replace the `_id` value with an existing document id.
+
+```graphql
+mutation {
+  deleteOrder(_id: "ORDER_ID")
+}
+```

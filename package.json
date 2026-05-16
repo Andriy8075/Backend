@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "check": "node --check app.js && node --check controllers/orderController.js && node --check routes/orderRoutes.js && node --check models/order.js"
+    "check": "node --check app.js && node --check controllers/orderController.js && node --check routes/orderRoutes.js && node --check models/order.js && node --check graphql/schema.js && node --check graphql/resolvers.js"
   },
   "keywords": [
     "nodejs",
@@ -21,6 +21,8 @@
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "graphql": "^16.14.0",
+    "graphql-http": "^1.22.4",
     "method-override": "^3.0.0",
     "mongoose": "^8.9.5"
   },
