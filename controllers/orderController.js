@@ -6,7 +6,7 @@ const handleError = (res, error) => {
 };
 
 const getHome = (req, res) => {
-  res.render('index', { title: 'Лабораторна робота №5' });
+  res.render('index', { title: 'База даних замовлень фірми' });
 };
 
 const getOrders = (req, res) => {
